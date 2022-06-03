@@ -4,14 +4,15 @@
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
     <div>
-    	<h4>Benvenuto al servizio catering</h4>
+    	<h4 th:text="#{header.menuUtente}">Menu</h4>
 		<div>
-			<a th:href="@{/login}" th:text="Login">Accedi</a>
+			<a href="prodotto" th:href="@{/prodotto}">Elenco prodotti</a>
    		</div>
-		<div>
-			<a th:href="@{/register}" th:text="Register">Registrati</a>
+   		<div>
+			<a th:href="@{/logout}">Logout</a>
    		</div>
+   		
     </div>
-    <footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
+    <footer th:replace="fragments/base.html :: fondo(home='/default')"></footer>
 </body>
 </html>
