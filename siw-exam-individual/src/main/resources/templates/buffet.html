@@ -4,12 +4,13 @@
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
     <div>
-    	<h4 th:text="#{header.prodotto}">...</h4>
-    	<div th:if="${prodotto}" th:object="${prodotto}">
-			<h5 th:text="*{nome}">nome</h5>
+    	<h4>Buffet:</h4>
+    	<div th:if="${buffet}" th:object="${buffet}">
+			<h3 th:text="*{nome}">nome</h3>
+			<h4 th:text="'lo chef che propone il buffet è '+ *{chef.nome} + ' ' + *{chef.cognome}">dati chef</h4>
 			<span th:text="*{descrizione}">descrizione </span>
    		</div>
-    	<div th:unless="${prodotto}">Questo prodotto non esiste</div>
+    	<div th:unless="${buffet}">Questo prodotto non esiste</div>
     </div>
     <footer th:replace="fragments/base.html :: fondo('/default')"></footer>
 </body>

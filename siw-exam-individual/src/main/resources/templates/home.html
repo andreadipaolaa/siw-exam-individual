@@ -4,9 +4,9 @@
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
     <div>
-    	<h4 th:text="#{header.menuUtente}">Menu</h4>
+    	<h4>Menu</h4>
 		<div>
-			<a href="prodotto" th:href="@{/prodotto}">Elenco prodotti</a>
+			<a href="elencoBuffet" th:href="@{/elencoBuffet}">Elenco buffet</a>
    		</div>
    		<div>
 			<a th:href="@{/logout}">Logout</a>

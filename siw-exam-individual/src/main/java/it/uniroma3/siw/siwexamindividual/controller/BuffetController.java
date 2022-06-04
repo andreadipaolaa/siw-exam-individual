@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -39,12 +40,25 @@ public class BuffetController {
         this.buffetValidator.validate(buffet, bindingResult);
         if(!bindingResult.hasErrors()){
             this.buffetService.inserisci(buffet);
-            model.addAttribute(buffet);
+            model.addAttribute("elencoBuffet", buffetService.tutti());
             return "elencoBuffet";
         }
         else
             return "buffetForm";
 
+    }
+
+    @GetMapping(value = "/elencoBuffet")
+    public String mostraElencoBuffet(Model model){
+        List<Buffet> elencoBuffet= buffetService.tutti();
+        model.addAttribute("elencoBuffet", elencoBuffet);
+        return "elencoBuffet";
+    }
+
+    @GetMapping(value = "/buffet/{id}")
+    public String dettagliBuffet(Model model, @PathVariable("id") Long id){
+        model.addAttribute("buffet", buffetService.getBuffetById(id));
+        return "buffet";
     }
 
 

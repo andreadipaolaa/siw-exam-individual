@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BuffetService {
@@ -31,5 +32,11 @@ public class BuffetService {
             return true;
         else
             return false;
+    }
+
+    @Transactional
+    public Buffet getBuffetById(Long id){
+        Optional<Buffet> result= buffetRepository.findById(id);
+        return result.orElse(null);
     }
 }

@@ -4,9 +4,9 @@
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
     <div>
-    	<h4 th:text="menu admin">Menu</h4>
+    	<h4>Menu Amministratore</h4>
 		<div>
-			<a th:href="@{/buffet}">Elenco prodotti</a>
+			<a th:href="@{/elencoBuffet}">Elenco buffet</a>
    		</div>
    		<div>
 			<a th:href="@{/admin/buffet}">Inserisci dati buffet</a>

@@ -24,7 +24,7 @@
 			<div>
 				<span>Chef:</span>
 				<select th:field="*{chef}">
-					<option th:each="chef : ${elencoChef}" th:value="${chef}" th:text="${chef.nome}"></option>
+					<option th:each="chef : ${elencoChef}" th:value="${chef.id}" th:text="${chef.nome} + ' ' + ${chef.cognome}"></option>
 				</select>
 			</div>
 			<div>
