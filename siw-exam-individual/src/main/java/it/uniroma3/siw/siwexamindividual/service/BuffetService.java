@@ -25,13 +25,22 @@ public class BuffetService {
         return (List<Buffet>) buffetRepository.findAll();
     }
 
+
     @Transactional
     public boolean alreadyExists(Buffet buffet) {
-        List<Buffet> buffets = this.buffetRepository.findByNome(buffet.getNome());
-        if (buffets.size() > 0)
+        List<Buffet> elencoBuffetByNome = this.buffetRepository.findByNome(buffet.getNome());
+        if(buffetRepository.existsById(buffet.getId()))
+            return false;
+        else if (elencoBuffetByNome.size() > 0)
             return true;
         else
             return false;
+    }
+
+    @Transactional
+    public void deleteById(Long id){
+        buffetRepository.deleteById(id);
+        return;
     }
 
     @Transactional
@@ -39,4 +48,5 @@ public class BuffetService {
         Optional<Buffet> result= buffetRepository.findById(id);
         return result.orElse(null);
     }
+
 }

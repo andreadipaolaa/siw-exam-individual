@@ -10,9 +10,7 @@
 				<a href="buffet"
 				   th:href="@{'/buffet' + '/' + ${buffet.id}}"
 				   th:text="${buffet.nome}">Penna rossa</a>
-				<span th:text="'ideato e realizzato da ' + ${buffet.chef.nome} + ' ' + ${buffet.chef.cognome}">nome chef</span>
-				<br><span th:text="${buffet.descrizione}">descr</span>
-
+				<br><span th:text="'ideato e realizzato da ' + ${buffet.chef.nome} + ' ' + ${buffet.chef.cognome}">nome chef</span>
 			</li>
 		</ul>
 	</div>
