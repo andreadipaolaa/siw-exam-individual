@@ -26,7 +26,7 @@ public class IngredienteController {
     }
 
     @PostMapping(value = "/admin/ingrediente")
-    public String addIngrediente(Model model, @ModelAttribute("infrediente") Ingrediente ingrediente, BindingResult bindingResult){
+    public String addIngrediente(Model model, @ModelAttribute("ingrediente") Ingrediente ingrediente, BindingResult bindingResult){
         this.ingredienteValidator.validate(ingrediente, bindingResult);
         if(!bindingResult.hasErrors()){
             this.ingredienteService.inserisci(ingrediente);

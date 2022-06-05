@@ -3,12 +3,14 @@ package it.uniroma3.siw.siwexamindividual.validator;
 import it.uniroma3.siw.siwexamindividual.model.Buffet;
 import it.uniroma3.siw.siwexamindividual.model.Ingrediente;
 import it.uniroma3.siw.siwexamindividual.service.IngredienteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 @Component
 public class IngredienteValidator implements Validator {
+    @Autowired
     private IngredienteService ingredienteService;
 
     @Override
