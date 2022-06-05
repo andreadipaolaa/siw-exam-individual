@@ -29,7 +29,7 @@ public class BuffetService {
     @Transactional
     public boolean alreadyExists(Buffet buffet) {
         List<Buffet> elencoBuffetByNome = this.buffetRepository.findByNome(buffet.getNome());
-        if(buffetRepository.existsById(buffet.getId()))
+        if(buffet.getId()!=null)
             return false;
         else if (elencoBuffetByNome.size() > 0)
             return true;

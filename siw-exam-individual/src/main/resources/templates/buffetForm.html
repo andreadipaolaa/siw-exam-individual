@@ -11,6 +11,10 @@
   			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>		
 		<div>
+			<div th:if="*{id}">
+				<span>ID:</span>
+				<span><input type="text" th:field="*{id}" readonly/></span>
+			</div>
 			<div>
 				<span>Nome:</span>
 				<span><input type="text" th:field="*{nome}" /></span>
