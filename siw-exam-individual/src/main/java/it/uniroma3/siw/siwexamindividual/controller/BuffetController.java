@@ -49,6 +49,7 @@ public class BuffetController {
         this.buffetValidator.validate(buffet, bindingResult);
         if(!bindingResult.hasErrors()){
             this.buffetService.inserisci(buffet);
+            buffet.getChef().getBuffetOfferti().add(buffet);
             model.addAttribute("elencoBuffet", buffetService.tutti());
             return "elencoBuffet";
         }

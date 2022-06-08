@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='elencoChef')"> </head>
+<body>
+<header th:replace="fragments/base.html :: intestazione"></header>
+<div>
+    <h4>Lista degli chef</h4>
+    <ul>
+        <li th:each="chef : ${elencoChef}">
+            <a th:href="@{'/chef' + '/' + ${chef.id}}"
+               th:text="${chef.nome} +' '+ ${chef.cognome}">nome cognome dello chef</a>
+        </li>
+    </ul>
+</div>
+<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+</body>
+</html>

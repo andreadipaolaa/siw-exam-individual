@@ -28,18 +28,6 @@ public class Chef {
     @OneToMany(mappedBy = "chef")
     private List<Buffet> buffetOfferti;
 
-    public String getNazionalita() {
-        return nazionalita;
-    }
-
-    public String getCognome() {
-        return cognome;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
     public Long getId() {
         return id;
     }
@@ -48,4 +36,35 @@ public class Chef {
         this.id = id;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+
+    public String getNazionalita() {
+        return nazionalita;
+    }
+
+    public void setNazionalita(String nazionalita) {
+        this.nazionalita = nazionalita;
+    }
+
+    public List<Buffet> getBuffetOfferti() {
+        return buffetOfferti;
+    }
+
+    public void setBuffetOfferti(List<Buffet> buffetOfferti) {
+        this.buffetOfferti = buffetOfferti;
+    }
 }

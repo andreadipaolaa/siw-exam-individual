@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head th:replace="fragments/base.html :: headerfiles(title=#{pageTitle.prodotto})"> </head>
+	<head th:replace="fragments/base.html :: headerfiles(title='buffet')"> </head>
 <body>
 	<header th:replace="fragments/base.html :: intestazione"></header>
     <div>
@@ -18,7 +18,7 @@
 				</form>
 			</div>
    		</div>
-    	<div th:unless="${buffet}">Questo prodotto non esiste</div>
+    	<div th:unless="${buffet}">Questo buffet non esiste</div>
     </div>
     <footer th:replace="fragments/base.html :: fondo('/default')"></footer>
 </body>

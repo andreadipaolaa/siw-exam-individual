@@ -39,13 +39,13 @@ public class BuffetService {
 
     @Transactional
     public void deleteById(Long id){
-        buffetRepository.deleteById(id);
+        this.buffetRepository.deleteById(id);
         return;
     }
 
     @Transactional
     public Buffet getBuffetById(Long id){
-        Optional<Buffet> result= buffetRepository.findById(id);
+        Optional<Buffet> result= this.buffetRepository.findById(id);
         return result.orElse(null);
     }
 

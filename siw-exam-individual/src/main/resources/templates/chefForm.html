@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: headerfiles(title='ingredienteForm')"> </head>
+<head th:replace="fragments/base.html :: headerfiles(title='chefForm')"> </head>
 <body>
 <header th:replace="fragments/base.html :: intestazione"></header>
 <div>
-    <h4>Inserisci i dati di un ingrediente</h4>
+    <h4>Inserisci i dati di uno Chef</h4>
 </div>
-<form th:action="@{/admin/ingrediente}" method="POST" th:object="${ingrediente}">
+<form th:action="@{/admin/chef}" method="POST" th:object="${chef}">
     <div th:if="${#fields.hasGlobalErrors()}">
         <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
     </div>
@@ -17,14 +17,14 @@
             <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
         </div>
         <div>
-            <span>Descrizione:</span>
-            <span><input type="text" th:field="*{descrizione}" /></span>
-            <span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
+            <span>Cognome:</span>
+            <span><input type="text" th:field="*{cognome}" /></span>
+            <span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
         </div>
         <div>
-            <span>Origine:</span>
-            <span><input type="text" th:field="*{origine}" /></span>
-            <span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{origine}"></span>
+            <span>Nazione:</span>
+            <span><input type="text" th:field="*{nazionalita}" /></span>
+            <span th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></span>
         </div>
         <div>
             <span><button type="submit">Invio</button></span>
