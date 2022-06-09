@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class IngredienteService {
@@ -29,5 +30,15 @@ public class IngredienteService {
             return true;
         else
             return false;
+    }
+
+    public Ingrediente getIngredienteById(Long id){
+        Optional<Ingrediente> result= this.ingredienteRepository.findById(id);
+        return result.orElse(null);
+    }
+    @Transactional
+    public void deleteById(Long id){
+        this.ingredienteRepository.deleteById(id);
+        return;
     }
 }

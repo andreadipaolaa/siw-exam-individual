@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='piatto')"> </head>
+<body>
+<header th:replace="fragments/base.html :: intestazione"></header>
+<div>
+    <h4>Chef:</h4>
+    <div th:if="${piatto}" th:object="${piatto}">
+        <h3 th:text="*{nome}">nome piatto</h3>
+        <div th:text="*{descrizione}">descrizione piatto</div><br>
+        <div>Ingredienti:</div>
+        <ul>
+            <li th:each="ingrediente : *{ingredienti}">
+                <span th:text="${ingrediente.nome}">ingrediente</span>
+            </li>
+        </ul>
+        <div th:if="${admin}">
+            <form th:action="@{'/admin/deletePiatto/' + *{id}}" th:method="GET">
+                <button th:type="submit">Elimina</button>
+            </form>
+        </div>
+    </div>
+    <div th:unless="${piatto}">Questo piatto non esiste</div>
+</div>
+<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+</body>
+</html>

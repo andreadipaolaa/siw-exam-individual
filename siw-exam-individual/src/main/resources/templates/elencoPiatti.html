@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='elencoPiatti')"> </head>
+<body>
+<header th:replace="fragments/base.html :: intestazione"></header>
+<div>
+    <h4>Lista dei piatti:</h4>
+    <ul>
+        <li th:each="piatto : ${elencoPiatto}">
+            <a href="piatto"
+               th:href="@{'/piatto' + '/' + ${piatto.id}}"
+               th:text="${piatto.nome}">nome piatto</a>
+            <form th:action="@{'/admin/deletePiatto/' + ${piatto.id}}" th:method="GET">
+                <button th:type="submit">Elimina</button>
+            </form>
+        </li>
+    </ul>
+</div>
+<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+</body>
+</html>

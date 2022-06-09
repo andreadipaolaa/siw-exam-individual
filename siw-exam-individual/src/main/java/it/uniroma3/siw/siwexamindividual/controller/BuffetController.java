@@ -53,8 +53,12 @@ public class BuffetController {
             model.addAttribute("elencoBuffet", buffetService.tutti());
             return "elencoBuffet";
         }
-        else
+        else{
+            List<Chef> elencoChef= this.chefService.tutti();
+            model.addAttribute("elencoChef", elencoChef);
             return "buffetForm";
+        }
+
 
     }
 

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='elencoIngredienti')"> </head>
+<body>
+<header th:replace="fragments/base.html :: intestazione"></header>
+<div>
+  <h4>Lista degli ingredienti</h4>
+  <ul>
+    <li th:each="ingrediente : ${elencoIngredienti}">
+      <span th:text="${ingrediente.nome}">ingrediente</span>
+      <form th:action="@{'/admin/deleteIngrediente/' + ${ingrediente.id}}" th:method="GET">
+        <button th:type="submit">Elimina</button>
+      </form>
+    </li>
+  </ul>
+</div>
+<footer th:replace="fragments/base.html :: fondo('/default')"></footer>
+</body>
+</html>
