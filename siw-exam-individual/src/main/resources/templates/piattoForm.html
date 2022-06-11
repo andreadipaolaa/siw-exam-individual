@@ -25,7 +25,7 @@
             <span>Ingredienti:</span>
             <div th:each="ingrediente : ${elencoIngredienti}">
                 <label th:text="${ingrediente.nome}">nome ingrediente</label>
-                <input type="checkbox" th:field="*{ingredienti}" th:value="${ingrediente}">
+                <input type="checkbox" th:field="*{ingredienti}" th:value="${ingrediente.id}">
             </div>
         </div>
         <div>

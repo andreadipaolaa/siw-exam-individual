@@ -19,7 +19,7 @@ public class Buffet {
 
     private String descrizione;
 
-    @OneToMany
+    @ManyToMany
     private List<Piatto> piatti;
 
     @NotNull

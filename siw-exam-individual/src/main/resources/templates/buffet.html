@@ -9,6 +9,14 @@
 			<h3 th:text="*{nome}">nome</h3>
 			<h4 th:text="'lo chef che propone il buffet è '+ *{chef.nome} + ' ' + *{chef.cognome}">dati chef</h4>
 			<span th:text="*{descrizione}">descrizione </span>
+			<h5>elenco piatti:</h5>
+			<ul>
+				<li th:each="piatto : ${elencoPiatti}">
+					<a href="piatto"
+					   th:href="@{'/piatto' + '/' + ${piatto.id}}"
+					   th:text="${piatto.nome}">nome piatto</a>
+				</li>
+			</ul>
 			<div th:if="${admin}">
 				<form th:action="@{'/admin/deleteBuffet/' + ${buffet.id}}" th:method="GET">
 					<button th:type="submit">Elimina</button>

@@ -32,6 +32,13 @@
 				</select>
 			</div>
 			<div>
+				<span>Piatti:</span>
+				<div th:each="piatto : ${elencoPiatti}">
+					<label th:text="${piatto.nome}">nome ingrediente</label>
+					<input type="checkbox" th:field="*{piatti}" th:value="${piatto.id}">
+				</div>
+			</div>
+			<div>
 				<span><button type="submit">Invio</button></span>
 			</div>
 		</div>

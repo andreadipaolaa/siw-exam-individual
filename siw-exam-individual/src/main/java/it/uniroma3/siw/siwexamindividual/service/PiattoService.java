@@ -23,7 +23,7 @@ public class PiattoService {
         return piattoRepository.save(piatto);
     }
 
-
+    @Transactional
     public List<Piatto> tutti() {
         return (List<Piatto>) piattoRepository.findAll();
     }

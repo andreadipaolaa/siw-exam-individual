@@ -19,7 +19,7 @@ public class Piatto {
 
     private String descrizione;
 
-    @OneToMany
+    @ManyToMany
     private List<Ingrediente> ingredienti;
 
     public String getNome() {

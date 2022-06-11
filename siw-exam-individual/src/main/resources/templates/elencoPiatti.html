@@ -6,7 +6,7 @@
 <div>
     <h4>Lista dei piatti:</h4>
     <ul>
-        <li th:each="piatto : ${elencoPiatto}">
+        <li th:each="piatto : ${elencoPiatti}">
             <a href="piatto"
                th:href="@{'/piatto' + '/' + ${piatto.id}}"
                th:text="${piatto.nome}">nome piatto</a>

@@ -3,9 +3,11 @@ package it.uniroma3.siw.siwexamindividual.controller;
 import it.uniroma3.siw.siwexamindividual.model.Buffet;
 import it.uniroma3.siw.siwexamindividual.model.Chef;
 import it.uniroma3.siw.siwexamindividual.model.Credentials;
+import it.uniroma3.siw.siwexamindividual.model.Piatto;
 import it.uniroma3.siw.siwexamindividual.service.BuffetService;
 import it.uniroma3.siw.siwexamindividual.service.ChefService;
 import it.uniroma3.siw.siwexamindividual.service.CredentialsService;
+import it.uniroma3.siw.siwexamindividual.service.PiattoService;
 import it.uniroma3.siw.siwexamindividual.validator.BuffetValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -36,11 +38,16 @@ public class BuffetController {
     @Autowired
     private CredentialsService credentialsService;
 
+    @Autowired
+    private PiattoService piattoService;
+
     @GetMapping(value = "/admin/buffet")
     public String addBuffet(Model model){
         model.addAttribute("buffet", new Buffet());
         List<Chef> elencoChef= this.chefService.tutti();
         model.addAttribute("elencoChef", elencoChef);
+        List<Piatto> elencoPiatti= this.piattoService.tutti();
+        model.addAttribute("elencoPiatti", elencoPiatti);
         return "buffetForm";
     }
 
@@ -54,8 +61,6 @@ public class BuffetController {
             return "elencoBuffet";
         }
         else{
-            List<Chef> elencoChef= this.chefService.tutti();
-            model.addAttribute("elencoChef", elencoChef);
             return "buffetForm";
         }
 
@@ -72,6 +77,7 @@ public class BuffetController {
     @GetMapping(value = "/buffet/{id}")
     public String dettagliBuffet(Model model, @PathVariable("id") Long id){
         model.addAttribute("buffet", buffetService.getBuffetById(id));
+        model.addAttribute("elencoPiatti", buffetService.getBuffetById(id).getPiatti());
         UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
         if(credentials.getRole().equals(Credentials.ADMIN_ROLE)){
@@ -99,6 +105,8 @@ public class BuffetController {
         model.addAttribute("buffet", buffetService.getBuffetById(id));
         List<Chef> elencoChef= this.chefService.tutti();
         model.addAttribute("elencoChef", elencoChef);
+        List<Piatto> elencoPiatti= this.piattoService.tutti();
+        model.addAttribute("elencoPiatti", elencoPiatti);
         return "buffetForm";
     }
 
