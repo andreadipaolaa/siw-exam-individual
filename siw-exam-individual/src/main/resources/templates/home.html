@@ -21,7 +21,7 @@
 			rel="stylesheet"
 	/>
 </head>
-<body>
+<body style="background: peru">
 <header>
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-white">
@@ -41,12 +41,6 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item active">
 						<a class="nav-link" aria-current="page" th:href="@{/default}">Home</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/elencoBuffet}">Buffet</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/elencoChef}">Chef</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" th:href="@{/logout}">Logout</a>
@@ -69,27 +63,62 @@
 			<div class="d-flex justify-content-center align-items-center h-100">
 				<div class="text-white">
 					<h1 class="mb-3">Servizio Catering</h1>
-					<a class="btn btn-outline-light btn-lg" th:href="@{/elencoBuffet}" role="button">
-						Esplora i nostri buffet
-					</a>
+					<div class="btn btn-outline-light btn-lg">
+						Scegli il tuo buffet
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- Background image -->
 </header>
-    <div>
-    	<h4>Menu</h4>
-		<div>
-			<a href="elencoBuffet" th:href="@{/elencoBuffet}">Elenco buffet</a>
-   		</div>
-		<div>
-			<a href="elencoChef" th:href="@{/elencoChef}">Elenco Chef</a>
+<div class="container text-center mb-3">
+	<h4 class="m-3"> <span> </span></h4>
+	<div class="row">
+		<div class="col-sm">
+			<div class="card">
+				<img src="/images/servizio-catering.jpg" class="card-img-top" alt="Fissure in Sandstone"/>
+				<div class="card-body">
+					<h5 class="card-title">Buffet</h5>
+					<p class="card-text">Scopri i migliori buffet offerti dal servizio catering</p>
+					<div class="row">
+						<div class="col-sm">
+							<a th:href="@{/elencoBuffet}" class="btn btn-primary">Esplora</a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-   		<div>
-			<a th:href="@{/logout}">Logout</a>
-   		</div>
-   		
-    </div>
+		<div class="col">
+			<div class="card">
+				<img src="/images/chef.jpg" class="card-img-top" alt="Fissure in Sandstone"/>
+				<div class="card-body">
+					<h5 class="card-title">Chef</h5>
+					<p class="card-text">Sentiti libero di conoscere i nostri chef</p>
+					<div class="row">
+						<div class="col-sm">
+							<a th:href="@{/elencoChef}" class="btn btn-primary">Esplora</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="card">
+				<img src="/images/IMG_7487.JPG" class="card-img-top" alt="Fissure in Sandstone"/>
+				<div class="card-body">
+					<h5 class="card-title">Pietanze</h5>
+					<p class="card-text">Naviga tra i vari piatti che troverai inclusi nei buffet</p>
+					<div class="row">
+						<div class="col-sm">
+							<a th:href="@{/elencoPiatti}" class="btn btn-primary">Esplora</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
 </body>
 </html>
