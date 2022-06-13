@@ -25,8 +25,6 @@ public class ChefController {
     private ChefService chefService;
     @Autowired
     private ChefValidator chefValidator;
-    @Autowired
-    private CredentialsService credentialsService;
 
     @GetMapping(value = "/admin/chef")
     public String addChef(Model model){
@@ -45,6 +43,19 @@ public class ChefController {
             return "chefForm";
     }
 
+    @GetMapping(value = "/admin/elencoChef")
+    public String mostraElencoChefAdmin(Model model){
+        List<Chef> elencoChef= chefService.tutti();
+        model.addAttribute("elencoChef", elencoChef);
+        return "/admin/elencoChef";
+    }
+
+    @GetMapping(value = "/admin/chef/{id}")
+    public String dettagliChefAdmin(Model model, @PathVariable("id") Long id){
+        model.addAttribute("chef", chefService.getChefById(id));
+        return "/admin/chef";
+    }
+
     @GetMapping(value = "/elencoChef")
     public String mostraElencoChef(Model model){
         List<Chef> elencoChef= chefService.tutti();
@@ -55,11 +66,6 @@ public class ChefController {
     @GetMapping(value = "/chef/{id}")
     public String dettagliChef(Model model, @PathVariable("id") Long id){
         model.addAttribute("chef", chefService.getChefById(id));
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-        if(credentials.getRole().equals(Credentials.ADMIN_ROLE)){
-            model.addAttribute("admin", true);
-        }
         return "chef";
     }
 

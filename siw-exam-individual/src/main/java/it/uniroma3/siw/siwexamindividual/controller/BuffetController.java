@@ -36,9 +36,6 @@ public class BuffetController {
     private ChefService chefService;
 
     @Autowired
-    private CredentialsService credentialsService;
-
-    @Autowired
     private PiattoService piattoService;
 
     @GetMapping(value = "/admin/buffet")
@@ -67,6 +64,21 @@ public class BuffetController {
 
     }
 
+    @GetMapping(value = "/admin/elencoBuffet")
+    public String mostraElencoBuffetAdmin(Model model){
+        List<Buffet> elencoBuffet= buffetService.tutti();
+        model.addAttribute("elencoBuffet", elencoBuffet);
+        return "/admin/elencoBuffet";
+    }
+
+    @GetMapping(value = "/admin/buffet/{id}")
+    public String dettagliBuffetAdmin(Model model, @PathVariable("id") Long id){
+        model.addAttribute("buffet", buffetService.getBuffetById(id));
+        model.addAttribute("elencoPiatti", buffetService.getBuffetById(id).getPiatti());
+
+        return "/admin/buffet";
+    }
+
     @GetMapping(value = "/elencoBuffet")
     public String mostraElencoBuffet(Model model){
         List<Buffet> elencoBuffet= buffetService.tutti();
@@ -78,11 +90,6 @@ public class BuffetController {
     public String dettagliBuffet(Model model, @PathVariable("id") Long id){
         model.addAttribute("buffet", buffetService.getBuffetById(id));
         model.addAttribute("elencoPiatti", buffetService.getBuffetById(id).getPiatti());
-        UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-        if(credentials.getRole().equals(Credentials.ADMIN_ROLE)){
-            model.addAttribute("admin", true);
-        }
         return "buffet";
     }
 

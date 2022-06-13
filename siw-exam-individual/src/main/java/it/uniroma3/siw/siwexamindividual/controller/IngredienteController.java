@@ -1,10 +1,14 @@
 package it.uniroma3.siw.siwexamindividual.controller;
 
 import it.uniroma3.siw.siwexamindividual.model.Buffet;
+import it.uniroma3.siw.siwexamindividual.model.Credentials;
 import it.uniroma3.siw.siwexamindividual.model.Ingrediente;
+import it.uniroma3.siw.siwexamindividual.service.CredentialsService;
 import it.uniroma3.siw.siwexamindividual.service.IngredienteService;
 import it.uniroma3.siw.siwexamindividual.validator.IngredienteValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +27,7 @@ public class IngredienteController {
     @Autowired
     private IngredienteValidator ingredienteValidator;
 
+
     @GetMapping(value = "/admin/ingrediente")
     public String addIngrediente(Model model){
         model.addAttribute("ingrediente", new Ingrediente());
@@ -40,11 +45,11 @@ public class IngredienteController {
             return "ingredienteForm";
     }
 
-    @GetMapping(value = "/elencoIngredienti")
+    @GetMapping(value = "/admin/elencoIngredienti")
     public String mostraElencoIngredienti(Model model){
         List<Ingrediente> elencoIngredienti= ingredienteService.tutti();
         model.addAttribute("elencoIngredienti", elencoIngredienti);
-        return "elencoIngredienti";
+        return "/admin/elencoIngredienti";
     }
     @GetMapping(value = "/admin/deleteIngrediente/{id}")
     public String deleteIngrediente(Model model, @PathVariable("id") Long id){

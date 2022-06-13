@@ -72,18 +72,24 @@
     </div>
     <!-- Background image -->
 </header>
-<div>
-    <h4>Lista dei piatti:</h4>
-    <ul>
-        <li th:each="piatto : ${elencoPiatti}">
-            <a href="piatto"
-               th:href="@{'/piatto' + '/' + ${piatto.id}}"
-               th:text="${piatto.nome}">nome piatto</a>
-            <form th:action="@{'/admin/deletePiatto/' + ${piatto.id}}" th:method="GET">
-                <button th:type="submit">Elimina</button>
-            </form>
-        </li>
-    </ul>
+<div class="container text-center mb-3">
+    <h4 class="m-3"> <span>Le nostre pietanze </span></h4>
+    <div class="row row-cols-sm-4">
+        <div class="col-sm mb-3"  th:each="piatto : ${elencoPiatti}" >
+            <div class="card">
+                <img src="/images/servizio-catering.jpg" class="card-img-top" alt="foto"/>
+                <div class="card-body" >
+                    <h5 class="card-title" th:text="${piatto.nome}">piatto</h5>
+                    <p class="card-text" th:text="${piatto.descrizione}">descrizione</p>
+                    <div class="row">
+                        <div class="col-sm">
+                            <a th:href="@{'/piatto' + '/' + ${piatto.id}}" class="btn btn-primary">Scopri</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

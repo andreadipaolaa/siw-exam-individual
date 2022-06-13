@@ -56,6 +56,19 @@ public class PiattoController {
 
     }
 
+    @GetMapping(value = "/admin/elencoPiatti")
+    public String mostraElencoPiattiAdmin(Model model){
+        List<Piatto> elencoPiatti= piattoService.tutti();
+        model.addAttribute("elencoPiatti", elencoPiatti);
+        return "/admin/elencoPiatti";
+    }
+
+    @GetMapping(value = "/admin/piatto/{id}")
+    public String dettagliPiattoAdmin(Model model, @PathVariable("id") Long id){
+        model.addAttribute("piatto", piattoService.getPiattoById(id));
+        return "/admin/piatto";
+    }
+
     @GetMapping(value = "/elencoPiatti")
     public String mostraElencoPiatti(Model model){
         List<Piatto> elencoPiatti= piattoService.tutti();
@@ -66,11 +79,6 @@ public class PiattoController {
     @GetMapping(value = "/piatto/{id}")
     public String dettagliPiatto(Model model, @PathVariable("id") Long id){
         model.addAttribute("piatto", piattoService.getPiattoById(id));
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-        if(credentials.getRole().equals(Credentials.ADMIN_ROLE)){
-            model.addAttribute("admin", true);
-        }
         return "piatto";
     }
 

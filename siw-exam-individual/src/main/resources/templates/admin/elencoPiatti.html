@@ -73,17 +73,20 @@
     <!-- Background image -->
 </header>
 <div class="container text-center mb-3">
-    <h4 class="m-3"> <span>I nostri Buffet </span></h4>
+    <h4 class="m-3"> <span>Le nostre pietanze </span></h4>
     <div class="row row-cols-sm-4">
-        <div class="col-sm mb-3"  th:each="buffet : ${elencoBuffet}" >
+        <div class="col-sm mb-3"  th:each="piatto : ${elencoPiatti}" >
             <div class="card">
                 <img src="/images/servizio-catering.jpg" class="card-img-top" alt="foto"/>
                 <div class="card-body" >
-                    <h5 class="card-title" th:text="${buffet.nome}">Buffet</h5>
-                    <p class="card-text" th:text="'ideato e realizzato da ' + ${buffet.chef.nome} + ' ' + ${buffet.chef.cognome}">chef buffet</p>
+                    <h5 class="card-title" th:text="${piatto.nome}">piatto</h5>
+                    <p class="card-text" th:text="${piatto.descrizione}">descrizione</p>
                     <div class="row">
                         <div class="col-sm">
-                            <a th:href="@{'/buffet' + '/' + ${buffet.id}}" class="btn btn-primary">Scopri</a>
+                            <a th:href="@{'/piatto' + '/' + ${piatto.id}}" class="btn btn-primary">Scopri</a>
+                        </div>
+                        <div class="col-sm">
+                            <a th:href="@{'/admin/deletePiatto/' + ${piatto.id}}" class="btn btn-danger">Elimina</a>
                         </div>
                     </div>
                 </div>
