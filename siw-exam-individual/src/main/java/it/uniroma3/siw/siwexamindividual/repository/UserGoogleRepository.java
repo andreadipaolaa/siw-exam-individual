@@ -1,4 +1,10 @@
 package it.uniroma3.siw.siwexamindividual.repository;
 
-public interface UserGoogleRepository extends org.springframework.data.repository.CrudRepository<it.uniroma3.siw.siwexamindividual.model.UserGoogle, java.lang.Long> {
+import it.uniroma3.siw.siwexamindividual.model.UserGoogle;
+import org.springframework.data.repository.CrudRepository;
+
+import java.util.Optional;
+
+public interface UserGoogleRepository extends CrudRepository<UserGoogle, Long> {
+    public Optional<UserGoogle> findByEmail(String email);
 }

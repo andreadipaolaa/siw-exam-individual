@@ -1,11 +1,16 @@
 package it.uniroma3.siw.siwexamindividual.controller;
 
+
+import it.uniroma3.siw.siwexamindividual.model.UserGoogle;
 import it.uniroma3.siw.siwexamindividual.service.CredentialsService;
+import it.uniroma3.siw.siwexamindividual.service.UserGoogleService;
 import it.uniroma3.siw.siwexamindividual.validator.CredentialsValidator;
 import it.uniroma3.siw.siwexamindividual.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.siw.siwexamindividual.model.Credentials;
 import it.uniroma3.siw.siwexamindividual.model.User;
+
+import java.util.List;
 
 @Controller
 public class AuthController {
@@ -27,6 +34,10 @@ public class AuthController {
 
     @Autowired
     private CredentialsValidator credentialsValidator;
+
+    @Autowired
+    private UserGoogleService userGoogleService;
+
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String showRegisterForm (Model model) {
@@ -75,5 +86,26 @@ public class AuthController {
             return "registrationSuccessful";
         }
         return "registerUser";
+    }
+
+    @RequestMapping(value = "/defaultGoogle", method = RequestMethod.GET)
+    public String defaultAfterLoginGoogle(Model model, @AuthenticationPrincipal OidcUser principal) {
+        UserGoogle userGoogle = this.userGoogleService.getUserGoogle(principal.getEmail());
+        if (userGoogle == null) {
+            saveGoogleUser(model, principal);
+        }
+        return "home";
+    }
+
+    @RequestMapping(value = "/saveGoogleUser", method = RequestMethod.POST)
+    public String saveGoogleUser(Model model, OidcUser principal) {
+        UserGoogle userGoogle = this.userGoogleService.getUserGoogle(principal.getEmail());
+        if (userGoogle == null) {
+            userGoogle = new UserGoogle();
+            userGoogle.setEmail(principal.getEmail());
+            userGoogle.setFullName(principal.getFullName());
+            this.userGoogleService.saveUserGoogle(userGoogle);
+        }
+        return "home";
     }
 }

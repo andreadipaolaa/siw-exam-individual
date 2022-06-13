@@ -22,9 +22,26 @@
 	/>
 </head>
 <body>
-	<div>
-    	<h4 th:text="#{header.registra}">Registrazione</h4>
-		<h1>Congratulazioni ti sei registrato!</h1>
+<section class="bg-image"
+		 style="
+    background-image: url('/images/IMG_7488.JPG');
+    height: 100vh;
+  ">
+	<div class="container py-5 h-100">
+		<div class="row d-flex justify-content-center align-items-center h-100">
+			<div class="col-12 col-md-8 col-lg-6 col-xl-5">
+				<div class="card shadow-2-strong" style="border-radius: 1rem;">
+					<div class="card-body p-5 text-center">
+
+						<h3 class="mb-5">Registrazione avvenuta con successo</h3>
+						<form th:action="@{/}" th:method="GET">
+							<button class="btn btn-primary btn-lg btn-block" type="submit">Torna alla home</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+</section>
 </body>
 </html>
