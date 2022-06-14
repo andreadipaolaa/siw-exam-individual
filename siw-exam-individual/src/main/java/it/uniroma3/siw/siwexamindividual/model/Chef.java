@@ -25,8 +25,8 @@ public class Chef {
     @NotBlank
     private String nazionalita;
 
-    @OneToMany(mappedBy = "chef")
-    private List<Buffet> buffetOfferti;
+    @OneToMany(mappedBy = "chef", cascade = CascadeType.REMOVE)
+    private List<Buffet> buffetOfferti = new java.util.ArrayList<>();
 
     public Long getId() {
         return id;

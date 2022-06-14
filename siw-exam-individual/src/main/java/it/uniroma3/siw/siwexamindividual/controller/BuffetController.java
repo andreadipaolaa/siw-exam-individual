@@ -103,10 +103,13 @@ public class BuffetController {
 
     @PostMapping(value = "/admin/deleteBuffet/{id}")
     public String ConfirmDeleteBuffet(Model model,@PathVariable("id") Long id){
+        Buffet buffet = this.buffetService.getBuffetById(id);
+        for(Piatto piatto : buffet.getPiatti())
+            piatto.getBuffets().remove(buffet);
         buffetService.deleteById(id);
         List<Buffet> elencoBuffet= buffetService.tutti();
         model.addAttribute("elencoBuffet", elencoBuffet);
-        return "elencoBuffet";
+        return "/admin/elencoBuffet";
     }
 
     @GetMapping(value = "/admin/modificaBuffet/{id}")

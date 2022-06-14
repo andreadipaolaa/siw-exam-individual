@@ -48,6 +48,7 @@ public class PiattoController {
             this.piattoService.inserisci(piatto);
             for(Ingrediente ingrediente : piatto.getIngredienti())
                 ingrediente.getPiatti().add(piatto);
+            model.addAttribute("elencoPiatti", this.piattoService.tutti());
             return "/admin/elencoPiatti";
         }
         else{
@@ -90,9 +91,14 @@ public class PiattoController {
 
     @PostMapping(value = "/admin/deletePiatto/{id}")
     public String ConfirmDeletePiatto(Model model,@PathVariable("id") Long id){
+        Piatto piatto = this.piattoService.getPiattoById(id);
+        for(Ingrediente ingrediente : piatto.getIngredienti())
+            ingrediente.getPiatti().remove(piatto);
+        for(Buffet buffet : piatto.getBuffets())
+            buffet.getPiatti().remove(piatto);
         piattoService.deleteById(id);
         List<Piatto> elencoPiatti= piattoService.tutti();
         model.addAttribute("elencoPiatti", elencoPiatti);
-        return "elencoPiatti";
+        return "/admin/elencoPiatti";
     }
 }

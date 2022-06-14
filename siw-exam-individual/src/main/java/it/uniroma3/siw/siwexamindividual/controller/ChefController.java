@@ -3,6 +3,8 @@ package it.uniroma3.siw.siwexamindividual.controller;
 import it.uniroma3.siw.siwexamindividual.model.Buffet;
 import it.uniroma3.siw.siwexamindividual.model.Chef;
 import it.uniroma3.siw.siwexamindividual.model.Credentials;
+import it.uniroma3.siw.siwexamindividual.model.Piatto;
+import it.uniroma3.siw.siwexamindividual.service.BuffetService;
 import it.uniroma3.siw.siwexamindividual.service.ChefService;
 import it.uniroma3.siw.siwexamindividual.service.CredentialsService;
 import it.uniroma3.siw.siwexamindividual.validator.ChefValidator;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -25,6 +28,7 @@ public class ChefController {
     private ChefService chefService;
     @Autowired
     private ChefValidator chefValidator;
+
 
     @GetMapping(value = "/admin/chef")
     public String addChef(Model model){
@@ -36,7 +40,9 @@ public class ChefController {
     public String addChef(Model model, @ModelAttribute("chef") Chef chef, BindingResult bindingResult){
         this.chefValidator.validate(chef, bindingResult);
         if(!bindingResult.hasErrors()){
+            chef.setBuffetOfferti(new ArrayList<>());
             this.chefService.inserisci(chef);
+            model.addAttribute("elencoChef", this.chefService.tutti());
             return "/admin/elencoChef";
         }
         else
@@ -77,9 +83,13 @@ public class ChefController {
 
     @PostMapping(value = "/admin/deleteChef/{id}")
     public String ConfirmDeleteChef(Model model,@PathVariable("id") Long id){
+        Chef chef = this.chefService.getChefById(id);
+        for(Buffet buffet : chef.getBuffetOfferti())
+            for(Piatto piatto : buffet.getPiatti())
+                piatto.getBuffets().remove(buffet);
         this.chefService.deleteById(id);
         List<Chef> elencoChef= chefService.tutti();
         model.addAttribute("elencoChef", elencoChef);
-        return "elencoChef";
+        return "/admin/elencoChef";
     }
 }

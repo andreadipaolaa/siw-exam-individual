@@ -3,6 +3,7 @@ package it.uniroma3.siw.siwexamindividual.controller;
 import it.uniroma3.siw.siwexamindividual.model.Buffet;
 import it.uniroma3.siw.siwexamindividual.model.Credentials;
 import it.uniroma3.siw.siwexamindividual.model.Ingrediente;
+import it.uniroma3.siw.siwexamindividual.model.Piatto;
 import it.uniroma3.siw.siwexamindividual.service.CredentialsService;
 import it.uniroma3.siw.siwexamindividual.service.IngredienteService;
 import it.uniroma3.siw.siwexamindividual.validator.IngredienteValidator;
@@ -39,6 +40,7 @@ public class IngredienteController {
         this.ingredienteValidator.validate(ingrediente, bindingResult);
         if(!bindingResult.hasErrors()){
             this.ingredienteService.inserisci(ingrediente);
+            model.addAttribute("elencoIngredienti", this.ingredienteService.tutti());
             return "/admin/elencoIngredienti";
         }
         else
@@ -59,9 +61,12 @@ public class IngredienteController {
 
     @PostMapping(value = "/admin/deleteIngrediente/{id}")
     public String ConfirmDeleteIngrediente(Model model,@PathVariable("id") Long id){
+        Ingrediente ingrediente = this.ingredienteService.getIngredienteById(id);
+        for(Piatto piatto : ingrediente.getPiatti())
+            piatto.getIngredienti().remove(ingrediente);
         ingredienteService.deleteById(id);
         List<Ingrediente> elencoIngredienti= ingredienteService.tutti();
         model.addAttribute("elencoIngredienti", elencoIngredienti);
-        return "elencoIngredienti";
+        return "/admin/elencoIngredienti";
     }
 }
