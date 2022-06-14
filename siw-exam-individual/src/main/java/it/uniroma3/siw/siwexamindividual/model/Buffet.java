@@ -19,7 +19,7 @@ public class Buffet {
 
     private String descrizione;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "buffets")
     private List<Piatto> piatti;
 
     @NotNull

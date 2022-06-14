@@ -46,11 +46,11 @@ public class PiattoController {
         this.piattoValidator.validate(piatto, bindingResult);
         if(!bindingResult.hasErrors()){
             this.piattoService.inserisci(piatto);
-            return "inserimentoRiuscito";
+            for(Ingrediente ingrediente : piatto.getIngredienti())
+                ingrediente.getPiatti().add(piatto);
+            return "/admin/elencoPiatti";
         }
         else{
-            List<Ingrediente> elencoIngredienti= this.ingredienteService.tutti();
-            model.addAttribute("elencoIngredienti", elencoIngredienti);
             return "piattoForm";
         }
 

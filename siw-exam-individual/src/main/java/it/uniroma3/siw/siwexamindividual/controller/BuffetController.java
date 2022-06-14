@@ -54,8 +54,10 @@ public class BuffetController {
         if(!bindingResult.hasErrors()){
             this.buffetService.inserisci(buffet);
             buffet.getChef().getBuffetOfferti().add(buffet);
+            for( Piatto piatto : buffet.getPiatti())
+                piatto.getBuffets().add(buffet);
             model.addAttribute("elencoBuffet", buffetService.tutti());
-            return "elencoBuffet";
+            return "/admin/elencoBuffet";
         }
         else{
             return "buffetForm";

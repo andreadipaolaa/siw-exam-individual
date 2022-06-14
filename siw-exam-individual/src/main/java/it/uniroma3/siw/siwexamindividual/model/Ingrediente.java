@@ -3,6 +3,7 @@ package it.uniroma3.siw.siwexamindividual.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "ingrediente")
@@ -19,6 +20,17 @@ public class Ingrediente {
     private String origine;
 
     private String descrizione;
+
+    @ManyToMany
+    private List<Piatto> piatti;
+
+    public List<Piatto> getPiatti() {
+        return piatti;
+    }
+
+    public void setPiatti(List<Piatto> piatti) {
+        this.piatti = piatti;
+    }
 
     public String getNome() {
         return nome;

@@ -25,6 +25,11 @@ public class UserService {
         return result.orElse(null);
     }
 
+    public User getUserByEmail(String email){
+        Optional<User> result = this.userRepository.findByEmail(email);
+        return result.orElse(null);
+    }
+
 
     @Transactional
     public User saveUser(User user) {

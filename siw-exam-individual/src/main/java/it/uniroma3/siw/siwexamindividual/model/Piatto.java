@@ -19,8 +19,19 @@ public class Piatto {
 
     private String descrizione;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "piatti")
     private List<Ingrediente> ingredienti;
+
+    @ManyToMany
+    private List<Buffet> buffets;
+
+    public List<Buffet> getBuffets() {
+        return buffets;
+    }
+
+    public void setBuffets(List<Buffet> buffets) {
+        this.buffets = buffets;
+    }
 
     public String getNome() {
         return nome;

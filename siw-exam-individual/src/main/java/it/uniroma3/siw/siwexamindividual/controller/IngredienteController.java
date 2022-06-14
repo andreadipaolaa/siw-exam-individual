@@ -39,7 +39,7 @@ public class IngredienteController {
         this.ingredienteValidator.validate(ingrediente, bindingResult);
         if(!bindingResult.hasErrors()){
             this.ingredienteService.inserisci(ingrediente);
-            return "inserimentoRiuscito";
+            return "/admin/elencoIngredienti";
         }
         else
             return "ingredienteForm";

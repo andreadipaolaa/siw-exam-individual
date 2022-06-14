@@ -37,7 +37,7 @@ public class ChefController {
         this.chefValidator.validate(chef, bindingResult);
         if(!bindingResult.hasErrors()){
             this.chefService.inserisci(chef);
-            return "inserimentoRiuscito";
+            return "/admin/elencoChef";
         }
         else
             return "chefForm";
