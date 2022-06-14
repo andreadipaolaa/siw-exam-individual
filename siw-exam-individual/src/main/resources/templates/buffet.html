@@ -21,7 +21,7 @@
 			rel="stylesheet"
 	/>
 </head>
-<body>
+<body style="background: peru">
 <header>
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-white">
@@ -69,30 +69,20 @@
 	</div>
 	<!-- Background image -->
 </header>
-    <div>
-    	<h4>Buffet:</h4>
-    	<div th:if="${buffet}" th:object="${buffet}">
-			<h3 th:text="*{nome}">nome</h3>
-			<h4 th:text="'lo chef che propone il buffet è '+ *{chef.nome} + ' ' + *{chef.cognome}">dati chef</h4>
-			<span th:text="*{descrizione}">descrizione </span>
-			<h5>elenco piatti:</h5>
-			<ul>
-				<li th:each="piatto : ${elencoPiatti}">
-					<a href="piatto"
-					   th:href="@{'/piatto' + '/' + ${piatto.id}}"
-					   th:text="${piatto.nome}">nome piatto</a>
-				</li>
-			</ul>
-			<div th:if="${admin}">
-				<form th:action="@{'/admin/deleteBuffet/' + ${buffet.id}}" th:method="GET">
-					<button th:type="submit">Elimina</button>
-				</form>
-				<form th:action="@{'/admin/modificaBuffet/' + ${buffet.id}}" th:method="GET">
-					<button th:type="submit">Modifica</button>
-				</form>
-			</div>
-   		</div>
-    	<div th:unless="${buffet}">Questo buffet non esiste</div>
-    </div>
+	<h3 class="text-center m-3">Dettagli Buffet</h3>
+	<div th:if="${buffet}" th:object="${buffet}" class="container mt-2 mb-4 p-3 text-center bg-light shadow border rounded-5" style="max-width: 450px">
+		<h3><span th:text="*{nome}">nome buffet</span> </h3>
+		<h5 th:text="'lo chef che propone il buffet è '+ *{chef.nome} + ' ' + *{chef.cognome}">dati chef</h5>
+		<p th:text="*{descrizione}">descrizione </p>
+		<h6>Pietanze incluse:</h6>
+		<div class="list-group">
+			<a th:each="piatto : *{piatti}" th:href="@{'/piatto/' + ${piatto.id}}" th:text="${piatto.nome}" class="list-group-item list-group-item-action">
+				Nome piatto</a>
+		</div>
+	</div>
+	<div th:unless="${buffet}" class="container mt-2 mb-4 p-3 text-center bg-light shadow border rounded-5" style="max-width: 450px">
+		<h4>Questo buffet non esiste</h4>
+	</div>
+
 </body>
 </html>
