@@ -80,7 +80,7 @@
                     <p class="card-text" th:text="${piatto.descrizione}">descrizione</p>
                     <div class="row">
                         <div class="col-sm">
-                            <a th:href="@{'/admin/piatto/' + ${piatto.id}}" class="btn btn-primary">Scopri</a>
+                            <a th:href="@{'/admin/piatto' + '/' + ${piatto.id}}" class="btn btn-primary">Scopri</a>
                         </div>
                         <div class="col-sm">
                             <a th:href="@{'/admin/deletePiatto/' + ${piatto.id}}" class="btn btn-danger">Elimina</a>

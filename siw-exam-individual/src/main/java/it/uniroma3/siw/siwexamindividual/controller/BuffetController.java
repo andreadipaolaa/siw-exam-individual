@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -114,7 +115,9 @@ public class BuffetController {
 
     @GetMapping(value = "/admin/modificaBuffet/{id}")
     public String updateBuffet(Model model, @PathVariable("id") Long id){
-        model.addAttribute("buffet", buffetService.getBuffetById(id));
+        Buffet buffetDaModificare= this.buffetService.getBuffetById(id);
+        buffetDaModificare.setPiatti(new ArrayList<>());
+        model.addAttribute("buffet", buffetDaModificare);
         List<Chef> elencoChef= this.chefService.tutti();
         model.addAttribute("elencoChef", elencoChef);
         List<Piatto> elencoPiatti= this.piattoService.tutti();

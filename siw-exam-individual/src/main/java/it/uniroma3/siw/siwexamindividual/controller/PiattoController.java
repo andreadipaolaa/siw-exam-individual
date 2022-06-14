@@ -30,8 +30,6 @@ public class PiattoController {
     @Autowired
     private IngredienteService ingredienteService;
 
-    @Autowired
-    private CredentialsService credentialsService;
 
     @GetMapping(value = "/admin/piatto")
     public String addPiatto(Model model){

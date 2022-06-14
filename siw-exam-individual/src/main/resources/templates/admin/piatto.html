@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -81,7 +81,7 @@
     <div class="container">
         <div class="row mt-4 mb-2">
             <div class="col">
-                <form th:action="@{'/admin/deletePiatto/' + ${buffet.id}}" th:method="POST">
+                <form th:action="@{'/admin/deletePiatto/' + ${piatto.id}}" th:method="POST">
                     <button type="submit" class="btn btn-danger">Elimina</button>
                 </form>
             </div>
