@@ -80,7 +80,7 @@
                     <p class="card-text" th:text="'attualmente offre ' + ${chef.buffetOfferti.size()} + ' buffet'">numero buffet</p>
                     <div class="row">
                         <div class="col-sm">
-                            <a th:href="@{'/chef' + '/' + ${chef.id}}" class="btn btn-primary">Scopri</a>
+                            <a th:href="@{'/admin/chef/' + ${chef.id}}" class="btn btn-primary">Scopri</a>
                         </div>
                         <div class="col-sm">
                             <a th:href="@{'/admin/deleteChef/' + ${chef.id}}" class="btn btn-danger">Elimina</a>

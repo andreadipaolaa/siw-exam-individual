@@ -21,7 +21,7 @@
             rel="stylesheet"
     />
 </head>
-<body>
+<body style="background: peru">
 <header>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
@@ -63,31 +63,24 @@
             <div class="d-flex justify-content-center align-items-center h-100">
                 <div class="text-white">
                     <h1 class="mb-3">Servizio Catering</h1>
-
                 </div>
             </div>
         </div>
     </div>
     <!-- Background image -->
 </header>
-<div>
-    <h4>Chef:</h4>
-    <div th:if="${piatto}" th:object="${piatto}">
-        <h3 th:text="*{nome}">nome piatto</h3>
-        <div th:text="*{descrizione}">descrizione piatto</div><br>
-        <div>Ingredienti:</div>
-        <ul>
-            <li th:each="ingrediente : *{ingredienti}">
-                <span th:text="${ingrediente.nome}">ingrediente</span>
-            </li>
-        </ul>
-        <div th:if="${admin}">
-            <form th:action="@{'/admin/deletePiatto/' + *{id}}" th:method="GET">
-                <button th:type="submit">Elimina</button>
-            </form>
-        </div>
+<h3 class="text-center m-3">Dettagli Piatto</h3>
+<div th:if="${piatto}" th:object="${piatto}" class="container mt-2 mb-4 p-3 text-center bg-light shadow border rounded-5" style="max-width: 450px">
+    <h3><span th:text="*{nome}">nome Piatto</span> </h3>
+    <p th:text="*{descrizione}">descrizione </p>
+    <h6>Realizzato con:</h6>
+    <div class="list-group">
+        <a th:each="ingrediente : *{ingredienti}" th:text="${ingrediente.nome}" class="list-group-item list-group-item-action">
+            Nome piatto</a>
     </div>
-    <div th:unless="${piatto}">Questo piatto non esiste</div>
+</div>
+<div th:unless="${piatto}" class="container mt-2 mb-4 p-3 text-center bg-light shadow border rounded-5" style="max-width: 450px">
+    <h4>Questo piatto non esiste</h4>
 </div>
 </body>
 </html>
