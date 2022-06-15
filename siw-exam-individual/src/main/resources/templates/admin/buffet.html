@@ -69,7 +69,7 @@
     </div>
     <!-- Background image -->
 </header>
-<h3 class="text-center m-3">Dettagli Buffet</h3>
+<h3 class="text-center text-light m-3">Dettagli Buffet</h3>
 <div th:if="${buffet}" th:object="${buffet}" class="container mt-2 mb-4 p-3 text-center bg-light shadow border rounded-5" style="max-width: 450px">
     <h3><span th:text="*{nome}">nome buffet</span> </h3>
     <h5 th:text="'lo chef che propone il buffet è '+ *{chef.nome} + ' ' + *{chef.cognome}">dati chef</h5>
