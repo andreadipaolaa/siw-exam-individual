@@ -69,4 +69,10 @@ public class IngredienteController {
         model.addAttribute("elencoIngredienti", elencoIngredienti);
         return "/admin/elencoIngredienti";
     }
+
+    @GetMapping(value = "/admin/modificaIngrediente/{id}")
+    public String updateIngrediente(Model model, @PathVariable("id") Long id){
+        model.addAttribute("ingrediente", this.ingredienteService.getIngredienteById(id));
+        return "ingredienteForm";
+    }
 }

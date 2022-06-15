@@ -29,9 +29,11 @@ public class PiattoService {
     }
 
 
-
+    @Transactional
     public boolean alreadyExists(Piatto piatto) {
         List<Piatto> elencoPiattiByNome = this.piattoRepository.findByNome(piatto.getNome());
+        if(piatto.getId()!=null)
+            return false;
         if (elencoPiattiByNome.size() > 0)
             return true;
         else
@@ -44,7 +46,7 @@ public class PiattoService {
         return;
     }
 
-
+    @Transactional
     public Piatto getPiattoById(Long id){
         Optional<Piatto> result= this.piattoRepository.findById(id);
         return result.orElse(null);

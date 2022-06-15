@@ -30,8 +30,10 @@ public class ChefService {
     }
 
     public boolean alreadyExists(Chef target) {
-        List<Chef> elencoChefByNome = this.chefRepository.findByNome(target.getNome());
-        if (elencoChefByNome.size() > 0)
+        List<Chef> elencoChefByNomeAndCognome = this.chefRepository.findByNomeAndCognome(target.getNome(), target.getCognome());
+        if(target.getId()!=null)
+            return false;
+        if (elencoChefByNomeAndCognome.size() > 0)
             return true;
         else
             return false;

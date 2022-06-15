@@ -26,6 +26,8 @@ public class IngredienteService {
 
     public boolean alreadyExists(Ingrediente target) {
         List<Ingrediente> elencoIngredientiByNome = this.ingredienteRepository.findByNome(target.getNome());
+        if(target.getId()!=null)
+            return false;
         if (elencoIngredientiByNome.size() > 0)
             return true;
         else

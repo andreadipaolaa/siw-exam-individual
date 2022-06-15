@@ -81,6 +81,20 @@
         <a th:each="buffet : *{buffetOfferti}" th:href="@{'/admin/buffet/' + ${buffet.id}}" th:text="${buffet.nome}" class="list-group-item list-group-item-action">
             Nome buffet</a>
     </div>
+    <div class="container">
+        <div class="row mt-4 mb-2">
+            <div class="col">
+                <form th:action="@{'/admin/deleteChef/' + ${chef.id}}" th:method="GET">
+                    <button type="submit" class="btn btn-danger">Elimina</button>
+                </form>
+            </div>
+            <div class="col">
+                <form th:action="@{'/admin/modificaChef/' + ${chef.id}}" th:method="GET">
+                    <button type="submit" class="btn btn-primary">Modifica</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 <div th:unless="${chef}" class="container mt-2 mb-4 p-3 text-center bg-light shadow border rounded-5" style="max-width: 450px">
     <h4>Questo chef non esiste</h4>

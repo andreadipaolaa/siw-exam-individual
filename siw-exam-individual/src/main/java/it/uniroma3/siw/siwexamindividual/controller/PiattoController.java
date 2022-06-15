@@ -50,6 +50,8 @@ public class PiattoController {
             return "/admin/elencoPiatti";
         }
         else{
+            List<Ingrediente> elencoIngredienti= this.ingredienteService.tutti();
+            model.addAttribute("elencoIngredienti", elencoIngredienti);
             return "piattoForm";
         }
 
@@ -98,5 +100,17 @@ public class PiattoController {
         List<Piatto> elencoPiatti= piattoService.tutti();
         model.addAttribute("elencoPiatti", elencoPiatti);
         return "/admin/elencoPiatti";
+    }
+
+    @GetMapping(value = "/admin/modificaPiatto/{id}")
+    public String updatePiatto(Model model, @PathVariable("id") Long id){
+        Piatto piattoDaModificare= this.piattoService.getPiattoById(id);
+        for(Ingrediente ingrediente : piattoDaModificare.getIngredienti())
+            ingrediente.getPiatti().remove(piattoDaModificare);
+        piattoDaModificare.getIngredienti().removeAll(piattoDaModificare.getIngredienti());
+        model.addAttribute("piatto", piattoDaModificare);
+        List<Ingrediente> elencoIngredienti= this.ingredienteService.tutti();
+        model.addAttribute("elencoIngredienti", elencoIngredienti);
+        return "piattoForm";
     }
 }

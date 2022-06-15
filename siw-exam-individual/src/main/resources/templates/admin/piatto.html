@@ -84,8 +84,13 @@
     <div class="container">
         <div class="row mt-4 mb-2">
             <div class="col">
-                <form th:action="@{'/admin/deletePiatto/' + ${piatto.id}}" th:method="POST">
+                <form th:action="@{'/admin/deletePiatto/' + ${piatto.id}}" th:method="GET">
                     <button type="submit" class="btn btn-danger">Elimina</button>
+                </form>
+            </div>
+            <div class="col">
+                <form th:action="@{'/admin/modificaPiatto/' + ${piatto.id}}" th:method="GET">
+                    <button type="submit" class="btn btn-primary">Modifica</button>
                 </form>
             </div>
             </div>

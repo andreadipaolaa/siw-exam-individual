@@ -120,7 +120,9 @@ public class BuffetController {
     @GetMapping(value = "/admin/modificaBuffet/{id}")
     public String updateBuffet(Model model, @PathVariable("id") Long id){
         Buffet buffetDaModificare= this.buffetService.getBuffetById(id);
-        buffetDaModificare.setPiatti(new ArrayList<>());
+        for(Piatto piatto : buffetDaModificare.getPiatti())
+            piatto.getBuffets().remove(buffetDaModificare);
+        buffetDaModificare.getPiatti().removeAll(buffetDaModificare.getPiatti());
         model.addAttribute("buffet", buffetDaModificare);
         List<Chef> elencoChef= this.chefService.tutti();
         model.addAttribute("elencoChef", elencoChef);

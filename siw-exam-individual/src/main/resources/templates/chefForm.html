@@ -75,6 +75,21 @@
 <div class="container mt-5 mb-5 p-3 text-center bg-light shadow border rounded-5" style="max-width: 450px">
     <h4>Inserisci i dati di uno chef</h4>
     <form th:action="@{/admin/chef}" method="POST" th:object="${chef}">
+        <div th:if="${#fields.hasGlobalErrors()}">
+            <p th:each="err : ${#fields.globalErrors()}" th:text="${err}" th:style="'color:red'">...</p>
+        </div>
+        <div class="form-outline m-3" th:if="*{id}">
+            <div class="form-helper">ID</div>
+            <input
+                    class="form-control "
+                    id="formControlReadonly"
+                    type="text"
+                    th:value="*{id}"
+                    aria-label="readonly input example"
+                    th:field="*{id}"
+                    readonly
+            />
+        </div>
         <div class="m-3">
             <div class="form-helper">Nome chef:</div>
             <div class="form-outline bg-white rounded-5">
