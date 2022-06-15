@@ -22,7 +22,7 @@ public class IngredienteValidator implements Validator {
     public void validate(Object target, Errors errors) {
         if (!errors.hasErrors()) {
             if (this.ingredienteService.alreadyExists((Ingrediente) target))
-                errors.reject("duplicato");
+                errors.reject("ingrediente.duplicato");
         }
     }
 }

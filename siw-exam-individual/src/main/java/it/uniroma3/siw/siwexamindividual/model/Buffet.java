@@ -22,7 +22,7 @@ public class Buffet {
     @ManyToMany(mappedBy = "buffets")
     private List<Piatto> piatti;
 
-    @NotNull
+    @NotNull(message = "Devi scegliere uno chef")
     @ManyToOne
     @JoinColumn
     private Chef chef;

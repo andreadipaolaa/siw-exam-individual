@@ -21,7 +21,7 @@ public class PiattoValidator implements Validator {
     public void validate(Object target, Errors errors) {
         if(!errors.hasErrors()){
             if (this.piattoService.alreadyExists((Piatto) target))
-                errors.reject("duplicato");
+                errors.reject("piatto.duplicato");
         }
     }
 }

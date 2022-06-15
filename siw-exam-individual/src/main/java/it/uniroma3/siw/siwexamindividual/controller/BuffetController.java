@@ -61,6 +61,10 @@ public class BuffetController {
             return "/admin/elencoBuffet";
         }
         else{
+            List<Chef> elencoChef= this.chefService.tutti();
+            model.addAttribute("elencoChef", elencoChef);
+            List<Piatto> elencoPiatti= this.piattoService.tutti();
+            model.addAttribute("elencoPiatti", elencoPiatti);
             return "buffetForm";
         }
 

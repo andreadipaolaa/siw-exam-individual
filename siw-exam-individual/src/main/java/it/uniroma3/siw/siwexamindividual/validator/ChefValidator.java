@@ -21,7 +21,7 @@ public class ChefValidator implements Validator {
     public void validate(Object target, Errors errors) {
         if (!errors.hasErrors()) {
             if (this.chefService.alreadyExists((Chef) target))
-                errors.reject("duplicato");
+                errors.reject("chef.duplicato");
         }
     }
 }

@@ -87,7 +87,7 @@
 		<div class="m-3">
 		<div class="form-helper">Nome buffet:</div>
 		<div class="form-outline bg-white rounded-5">
-			<input type="text" th:field="*{nome}" class="form-control" />
+			<input required type="text" th:field="*{nome}" class="form-control" />
 		</div>
 		</div>
 		<div class="m-3">
@@ -101,6 +101,8 @@
 			<option th:value="null" selected>Scegli lo chef</option>
 			<option th:each="chef : ${elencoChef}" th:value="${chef.id}" th:text="${chef.nome} + ' ' + ${chef.cognome}">One</option>
 		</select>
+			<div th:if="${#fields.hasErrors('chef')}"
+				  th:errors="*{chef}" th:text="#{buffet.chef.obbligatorio}" th:style="'color:red'"></div>
 		</div>
 		<h6 class="mt-3">Seleziona i piatti:</h6>
 		<div class="row row-cols-sm-3">

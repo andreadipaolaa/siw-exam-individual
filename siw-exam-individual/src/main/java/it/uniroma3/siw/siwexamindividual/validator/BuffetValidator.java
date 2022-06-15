@@ -19,9 +19,13 @@ public class BuffetValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
+        Buffet buffet= (Buffet) target;
         if(!errors.hasErrors()){
-            if (this.buffetService.alreadyExists((Buffet) target))
-                errors.reject("duplicato");
+            if(buffet.getChef()==null) {
+                errors.reject("buffet.chef.obbligatorio");
+            }
+            if (this.buffetService.alreadyExists(buffet))
+                errors.reject("buffet.duplicato");
         }
     }
 }

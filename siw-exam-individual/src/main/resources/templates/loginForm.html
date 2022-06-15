@@ -39,11 +39,11 @@
 							<h3 class="mb-5">Login</h3>
 							<form th:action="@{/login}" method="POST">
 							<div class="form-outline mb-4">Username
-								<input name="username" type="text" class="form-control form-control-lg border rounded-3 " />
+								<input  required name="username" type="text" class="form-control form-control-lg border rounded-3 " />
 							</div>
 
 							<div class="form-outline mb-4">Password
-								<input name="password" type="password" class="form-control form-control-lg border rounded-3 " />
+								<input required name="password" type="password" class="form-control form-control-lg border rounded-3 " />
 							</div>
 							<button class="btn btn-primary btn-lg btn-block" type="submit">Accedi</button>
 							</form>
