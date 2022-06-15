@@ -21,7 +21,7 @@
             rel="stylesheet"
     />
 </head>
-<body>
+<body style="background: peru">
 <header>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
@@ -69,33 +69,29 @@
     </div>
     <!-- Background image -->
 </header>
-<div>
+<div class="container mt-5 mb-5 p-3 text-center bg-light shadow border rounded-5" style="max-width: 500px">
     <h4>Inserisci i dati di un ingrediente</h4>
+    <form th:action="@{/admin/ingrediente}" method="POST" th:object="${ingrediente}">
+        <div class="m-3">
+            <div class="form-helper">Nome ingrediente:</div>
+            <div class="form-outline bg-white rounded-5">
+                <input type="text" th:field="*{nome}" class="form-control" />
+            </div>
+        </div>
+        <div class="m-3">
+            <div class="form-helper">Origine ingrediente:</div>
+            <div class="form-outline bg-white rounded-5">
+                <input type="text" th:field="*{origine}" class="form-control" />
+            </div>
+        </div>
+        <div class="m-3">
+            <div class="form-helper">Descrizione:</div>
+            <div class="form-outline bg-white rounded-5">
+                <textarea class="form-control " th:field="*{descrizione}" id="textAreaExample" rows="2"></textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Invia</button>
+    </form>
 </div>
-<form th:action="@{/admin/ingrediente}" method="POST" th:object="${ingrediente}">
-    <div th:if="${#fields.hasGlobalErrors()}">
-        <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
-    </div>
-    <div>
-        <div>
-            <span>Nome:</span>
-            <span><input type="text" th:field="*{nome}" /></span>
-            <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
-        </div>
-        <div>
-            <span>Descrizione:</span>
-            <span><input type="text" th:field="*{descrizione}" /></span>
-            <span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
-        </div>
-        <div>
-            <span>Origine:</span>
-            <span><input type="text" th:field="*{origine}" /></span>
-            <span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{origine}"></span>
-        </div>
-        <div>
-            <span><button type="submit">Invio</button></span>
-        </div>
-    </div>
-</form>
 </body>
 </html>
