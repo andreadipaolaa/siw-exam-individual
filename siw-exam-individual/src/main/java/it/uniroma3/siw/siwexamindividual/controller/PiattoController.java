@@ -47,7 +47,7 @@ public class PiattoController {
             for(Ingrediente ingrediente : piatto.getIngredienti())
                 ingrediente.getPiatti().add(piatto);
             model.addAttribute("elencoPiatti", this.piattoService.tutti());
-            return "/admin/elencoPiatti";
+            return "elencoPiattiAdmin";
         }
         else{
             List<Ingrediente> elencoIngredienti= this.ingredienteService.tutti();
@@ -61,13 +61,13 @@ public class PiattoController {
     public String mostraElencoPiattiAdmin(Model model){
         List<Piatto> elencoPiatti= piattoService.tutti();
         model.addAttribute("elencoPiatti", elencoPiatti);
-        return "/admin/elencoPiatti";
+        return "elencoPiattiAdmin";
     }
 
     @GetMapping(value = "/admin/piatto/{id}")
     public String dettagliPiattoAdmin(Model model, @PathVariable("id") Long id){
         model.addAttribute("piatto", piattoService.getPiattoById(id));
-        return "/admin/piatto";
+        return "piattoAdmin";
     }
 
     @GetMapping(value = "/elencoPiatti")
@@ -99,7 +99,7 @@ public class PiattoController {
         piattoService.deleteById(id);
         List<Piatto> elencoPiatti= piattoService.tutti();
         model.addAttribute("elencoPiatti", elencoPiatti);
-        return "/admin/elencoPiatti";
+        return "elencoPiattiAdmin";
     }
 
     @GetMapping(value = "/admin/modificaPiatto/{id}")

@@ -107,8 +107,8 @@
 			<option th:value="null" selected>Scegli lo chef</option>
 			<option th:each="chef : ${elencoChef}" th:value="${chef.id}" th:text="${chef.nome} + ' ' + ${chef.cognome}">One</option>
 		</select>
-			<div th:if="${#fields.hasErrors('buffet.chef.obbligatorio')}"
-				  th:errors="*{chef}" th:text="#{buffet.chef.obbligatorio}" th:style="'color:red'"></div>
+<!--			<div th:if="${#fields.hasErrors('buffet.chef.obbligatorio')}"-->
+<!--				  th:errors="*{chef}" th:text="#{buffet.chef.obbligatorio}" th:style="'color:red'"></div>-->
 		</div>
 		<h6 class="mt-3">Seleziona i piatti:</h6>
 		<div class="row row-cols-sm-3">

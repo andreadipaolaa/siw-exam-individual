@@ -21,7 +21,7 @@ public class MainController {
 
     @RequestMapping(value = {"/admin/home"}, method = RequestMethod.GET)
     public String homeAdmin(Model model) {
-        return "/admin/home";
+        return "homeAdmin";
     }
 
     @RequestMapping(value = {"/home"}, method = RequestMethod.GET)

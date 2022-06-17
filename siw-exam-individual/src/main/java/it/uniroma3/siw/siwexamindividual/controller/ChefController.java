@@ -43,7 +43,7 @@ public class ChefController {
             chef.setBuffetOfferti(new ArrayList<>());
             this.chefService.inserisci(chef);
             model.addAttribute("elencoChef", this.chefService.tutti());
-            return "/admin/elencoChef";
+            return "elencoChefAdmin";
         }
         else
             return "chefForm";
@@ -53,13 +53,13 @@ public class ChefController {
     public String mostraElencoChefAdmin(Model model){
         List<Chef> elencoChef= chefService.tutti();
         model.addAttribute("elencoChef", elencoChef);
-        return "/admin/elencoChef";
+        return "elencoChefAdmin";
     }
 
     @GetMapping(value = "/admin/chef/{id}")
     public String dettagliChefAdmin(Model model, @PathVariable("id") Long id){
         model.addAttribute("chef", chefService.getChefById(id));
-        return "/admin/chef";
+        return "chefAdmin";
     }
 
     @GetMapping(value = "/elencoChef")
@@ -90,7 +90,7 @@ public class ChefController {
         this.chefService.deleteById(id);
         List<Chef> elencoChef= chefService.tutti();
         model.addAttribute("elencoChef", elencoChef);
-        return "/admin/elencoChef";
+        return "elencoChefAdmin";
     }
 
     @GetMapping(value = "/admin/modificaChef/{id}")

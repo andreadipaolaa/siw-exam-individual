@@ -58,7 +58,7 @@ public class BuffetController {
             for( Piatto piatto : buffet.getPiatti())
                 piatto.getBuffets().add(buffet);
             model.addAttribute("elencoBuffet", buffetService.tutti());
-            return "/admin/elencoBuffet";
+            return "elencoBuffetAdmin";
         }
         else{
             List<Chef> elencoChef= this.chefService.tutti();
@@ -75,7 +75,7 @@ public class BuffetController {
     public String mostraElencoBuffetAdmin(Model model){
         List<Buffet> elencoBuffet= buffetService.tutti();
         model.addAttribute("elencoBuffet", elencoBuffet);
-        return "/admin/elencoBuffet";
+        return "elencoBuffetAdmin";
     }
 
     @GetMapping(value = "/admin/buffet/{id}")
@@ -83,7 +83,7 @@ public class BuffetController {
         model.addAttribute("buffet", buffetService.getBuffetById(id));
         model.addAttribute("elencoPiatti", buffetService.getBuffetById(id).getPiatti());
 
-        return "/admin/buffet";
+        return "buffetAdmin";
     }
 
     @GetMapping(value = "/elencoBuffet")
@@ -114,7 +114,7 @@ public class BuffetController {
         buffetService.deleteById(id);
         List<Buffet> elencoBuffet= buffetService.tutti();
         model.addAttribute("elencoBuffet", elencoBuffet);
-        return "/admin/elencoBuffet";
+        return "elencoBuffetAdmin";
     }
 
     @GetMapping(value = "/admin/modificaBuffet/{id}")
