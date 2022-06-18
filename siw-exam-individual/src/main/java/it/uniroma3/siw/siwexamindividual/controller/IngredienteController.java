@@ -41,7 +41,7 @@ public class IngredienteController {
         if(!bindingResult.hasErrors()){
             this.ingredienteService.inserisci(ingrediente);
             model.addAttribute("elencoIngredienti", this.ingredienteService.tutti());
-            return "/admin/elencoIngredienti";
+            return "elencoIngredientiAdmin";
         }
         else
             return "ingredienteForm";
@@ -51,7 +51,7 @@ public class IngredienteController {
     public String mostraElencoIngredienti(Model model){
         List<Ingrediente> elencoIngredienti= ingredienteService.tutti();
         model.addAttribute("elencoIngredienti", elencoIngredienti);
-        return "/admin/elencoIngredienti";
+        return "elencoIngredientiAdmin";
     }
     @GetMapping(value = "/admin/deleteIngrediente/{id}")
     public String deleteIngrediente(Model model, @PathVariable("id") Long id){
@@ -67,7 +67,7 @@ public class IngredienteController {
         ingredienteService.deleteById(id);
         List<Ingrediente> elencoIngredienti= ingredienteService.tutti();
         model.addAttribute("elencoIngredienti", elencoIngredienti);
-        return "/admin/elencoIngredienti";
+        return "elencoIngredientiAdmin";
     }
 
     @GetMapping(value = "/admin/modificaIngrediente/{id}")
