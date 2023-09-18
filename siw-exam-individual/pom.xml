@@ -10,7 +10,7 @@
     </parent>
     <groupId>it.uniroma3.siw</groupId>
     <artifactId>siw-exam-individual</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>siw-exam-individual</name>
     <description>siw-exam-individual</description>
     <properties>
